@@ -153,7 +153,10 @@ class ServerlessPluginSubscriptionFilter {
     });
   }
 
-  getLogGroupArn(logGroupName, nextToken = null) {
+  getLogGroupArn(logGroupName, nextToken) {
+    if(!nextToken){
+      nextToken=null;
+    }
     return new Promise((resolve, reject) => {
       const cloudWatchLogs = new AWS.CloudWatchLogs();
       const params = {
